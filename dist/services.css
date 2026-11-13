@@ -6,3 +6,6 @@
 .service-page .scene-bone{background-position:left bottom}.service-page .scene-limb{background-position:center bottom}.service-page .scene-rehab{background-position:right bottom}
 .service-page .scene-robotics,.service-page .scene-injury,.service-page .scene-bone{background-position-x:10%}
 .service-page .scene-joints,.service-page .scene-regen,.service-page .scene-rehab{background-position-x:90%}
+.service-page .service-cards article,.service-page .service-highlights span{background:radial-gradient(ellipse at 100% 0%,#c4e6ff,transparent 60%),linear-gradient(145deg,#fff,#eaf5ff);border:1px solid #c1ddf4;box-shadow:0 10px 25px #155d9c1d,0 0 24px #72c4ff20;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
+.service-page .service-cards article:hover,.service-page .service-highlights span:hover{transform:translateY(-5px);border-color:#72b9ee;box-shadow:0 16px 32px #155b9d30,0 0 32px #60baff55}
+@media(prefers-reduced-motion:reduce){.service-page .service-cards article,.service-page .service-highlights span{transition:none}.service-page .service-cards article:hover,.service-page .service-highlights span:hover{transform:none}}

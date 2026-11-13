@@ -482,3 +482,22 @@ dialog::backdrop{background:#181a25a0}
 .bone-heal-action.bone-action-replay .bone-action-left{animation:bone-heal-left 1.1s ease both!important}
 .bone-heal-action.bone-action-replay .bone-action-right{animation:bone-heal-right 1.1s ease both!important}
 .bone-heal-action.bone-action-replay .bone-action-repair{animation:bone-glint 1.1s ease both!important}
+
+/* A soft blue backlight for the main card collections. */
+.ref-services-grid .service-side-card,.ref-condition,.ref-steps li,.ref-contact-grid article,.experience-card{
+  background-color:#f5faff;
+  background-image:radial-gradient(ellipse at 90% 0%,#b6dfff 0%,transparent 58%),linear-gradient(145deg,#fff 25%,#e8f5ff 100%);
+  border:1px solid #bcdcf7;
+  box-shadow:0 10px 26px #185d9c1c,0 0 24px #70c5ff20;
+  transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease;
+}
+.ref-services-grid .service-side-card:hover,.ref-services-grid .service-side-card:focus-visible,.ref-condition:hover,.ref-condition:focus-visible,.ref-contact-grid article:hover,.ref-steps li:hover{
+  transform:translateY(-5px);border-color:#73b8ef;box-shadow:0 16px 32px #155b9d30,0 0 32px #60baff55;
+}
+@media(prefers-reduced-motion:no-preference){
+  .ref-services-grid .service-side-card,.ref-condition,.ref-steps li,.ref-contact-grid article{animation:card-light-breathe 5s ease-in-out infinite alternate}
+  .ref-services-grid .service-side-card:nth-child(3n+2),.ref-condition:nth-child(3n+2),.ref-steps li:nth-child(2n){animation-delay:-2.5s}
+  @keyframes card-light-breathe{from{box-shadow:0 10px 26px #185d9c1c,0 0 18px #70c5ff20}to{box-shadow:0 13px 28px #185d9c29,0 0 30px #70c5ff48}}
+  .ref-services-grid .service-side-card:hover,.ref-services-grid .service-side-card:focus-visible,.ref-condition:hover,.ref-condition:focus-visible{animation-play-state:paused}
+}
+@media(prefers-reduced-motion:reduce){.ref-services-grid .service-side-card,.ref-condition,.ref-steps li,.ref-contact-grid article,.experience-card{animation:none;transition:none}.ref-services-grid .service-side-card:hover,.ref-services-grid .service-side-card:focus-visible,.ref-condition:hover,.ref-condition:focus-visible,.ref-contact-grid article:hover,.ref-steps li:hover{transform:none}}
