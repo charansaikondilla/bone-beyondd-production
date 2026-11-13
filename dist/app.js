@@ -74,6 +74,13 @@ const servicesDropdown = navigation.querySelector('.dropdown');
 servicesDropdown.addEventListener('pointerenter', (event) => {
   if (!mobile.matches && event.pointerType === 'mouse') servicesDropdown.open = true;
 });
+const videoStyles = document.createElement('link');
+videoStyles.rel = 'stylesheet';
+videoStyles.href = 'video-gallery.css?v=1';
+document.head.appendChild(videoStyles);
+const videoScript = document.createElement('script');
+videoScript.src = 'video-gallery.js?v=1';
+document.head.appendChild(videoScript);
 servicesDropdown.addEventListener('pointerleave', (event) => {
   if (!mobile.matches && event.pointerType === 'mouse') servicesDropdown.open = false;
 });
