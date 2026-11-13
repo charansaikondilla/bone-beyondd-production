@@ -81,6 +81,17 @@ document.head.appendChild(videoStyles);
 const videoScript = document.createElement('script');
 videoScript.src = 'video-gallery.js?v=1';
 document.head.appendChild(videoScript);
+const insuranceLogos = document.querySelector('.insurance-logos');
+if (insuranceLogos && !insuranceLogos.dataset.marqueeReady) {
+  insuranceLogos.dataset.marqueeReady = 'true';
+  insuranceLogos.classList.add('motion-enter');
+  Array.from(insuranceLogos.children).forEach((logo) => {
+    const copy = logo.cloneNode(true);
+    copy.setAttribute('aria-hidden', 'true');
+    copy.querySelectorAll('img').forEach((image) => image.setAttribute('loading', 'lazy'));
+    insuranceLogos.appendChild(copy);
+  });
+}
 servicesDropdown.addEventListener('pointerleave', (event) => {
   if (!mobile.matches && event.pointerType === 'mouse') servicesDropdown.open = false;
 });

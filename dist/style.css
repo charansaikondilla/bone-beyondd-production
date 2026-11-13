@@ -450,3 +450,26 @@ dialog::backdrop{background:#181a25a0}
  .insurance-logos.motion-enter li{animation:insurance-arrive .55s ease both;animation-delay:var(--logo-delay,0ms)}
 }
 @media(prefers-reduced-motion:reduce){.insurance-logos li{transition:none}.insurance-logos li:hover{transform:none}}
+
+/* Premium service-card interaction: cool blue depth, glow and a quiet image lift. */
+.ref-services-grid .service-side-card{isolation:isolate;background:linear-gradient(145deg,#ffffff 0%,#f4faff 55%,#e7f3ff 100%);border:1px solid #c6e0f8;box-shadow:0 12px 28px #13538d18;transition:transform .42s cubic-bezier(.2,.8,.2,1),box-shadow .42s ease,border-color .42s ease,background .42s ease}
+.ref-services-grid .service-side-card:before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(circle at 12% 0%,#b8e2ff90,transparent 38%),linear-gradient(120deg,transparent 30%,#fff9 50%,transparent 70%);opacity:0;transform:translateX(-35%);transition:opacity .42s ease,transform .75s ease}
+.ref-services-grid .service-side-card:hover,.ref-services-grid .service-side-card:focus-visible{transform:translateY(-10px) scale(1.015);border-color:#56a7ec;box-shadow:0 20px 42px #0b5cae33,0 0 0 5px #bfe5ff66;background:linear-gradient(145deg,#ffffff 0%,#eff9ff 48%,#d8eeff 100%)}
+.ref-services-grid .service-side-card:hover:before,.ref-services-grid .service-side-card:focus-visible:before{opacity:1;transform:translateX(35%)}
+.ref-services-grid .service-side-card .service-side-image{transition:transform .65s cubic-bezier(.2,.8,.2,1),filter .42s ease;box-shadow:inset 0 0 0 1px #fff5}
+.ref-services-grid .service-side-card:hover .service-side-image,.ref-services-grid .service-side-card:focus-visible .service-side-image{transform:scale(1.055);filter:saturate(1.08) brightness(1.04)}
+.ref-services-grid .service-side-card .ref-icon{background:#d7efff;color:#075ed2;box-shadow:0 8px 18px #1371c52b;transition:transform .42s ease,background .42s ease,box-shadow .42s ease}
+.ref-services-grid .service-side-card:hover .ref-icon,.ref-services-grid .service-side-card:focus-visible .ref-icon{transform:translateY(-4px) rotate(-4deg);background:#b7e2ff;box-shadow:0 12px 22px #1371c545}
+.ref-services-grid .service-side-text{border-left-color:#1781e6;transition:border-color .42s ease}
+.ref-services-grid .service-side-card:hover .service-side-text,.ref-services-grid .service-side-card:focus-visible .service-side-text{border-left-color:#064fab}
+
+/* Premium insurance marquee: two identical tracks create a seamless horizontal loop. */
+.ref-insurance>.wrap{overflow:hidden}
+.insurance-logos{display:flex;flex-wrap:nowrap;gap:16px;width:max-content;animation:insurance-marquee 54s linear infinite;will-change:transform;padding:10px 0 24px}
+.insurance-logos li{flex:0 0 clamp(158px,15vw,220px);height:82px;background:linear-gradient(145deg,#fff,#f0f8ff);border-color:#bfdbf4;box-shadow:0 10px 24px #0e5b9f1a;transition:transform .28s ease,box-shadow .28s ease,border-color .28s ease}
+.insurance-logos li:hover{transform:translateY(-7px) scale(1.035);border-color:#55a9ed;box-shadow:0 18px 30px #0e5b9f33}
+.insurance-logos img{max-height:70px;padding:7px 12px}
+@keyframes insurance-marquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 8px))}}
+.insurance-logos:hover,.insurance-logos:focus-within{animation-play-state:paused}
+@media(max-width:600px){.insurance-logos{gap:12px;padding-bottom:18px}.insurance-logos li{flex-basis:158px;height:72px}.insurance-logos img{max-height:62px;padding:6px 9px}}
+@media(prefers-reduced-motion:reduce){.ref-services-grid .service-side-card,.ref-services-grid .service-side-card:before,.ref-services-grid .service-side-card .service-side-image,.ref-services-grid .service-side-card .ref-icon,.insurance-logos,.insurance-logos li{transition:none;animation:none}.ref-services-grid .service-side-card:hover,.ref-services-grid .service-side-card:focus-visible{transform:none}.ref-services-grid .service-side-card:hover .service-side-image,.ref-services-grid .service-side-card:focus-visible .service-side-image{transform:none}.insurance-logos{flex-wrap:wrap;width:auto}.insurance-logos li{flex-basis:calc(16.66% - 14px)}}
