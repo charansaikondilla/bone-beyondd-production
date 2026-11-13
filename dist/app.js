@@ -74,13 +74,6 @@ const servicesDropdown = navigation.querySelector('.dropdown');
 servicesDropdown.addEventListener('pointerenter', (event) => {
   if (!mobile.matches && event.pointerType === 'mouse') servicesDropdown.open = true;
 });
-const videoStyles = document.createElement('link');
-videoStyles.rel = 'stylesheet';
-videoStyles.href = 'video-gallery.css?v=1';
-document.head.appendChild(videoStyles);
-const videoScript = document.createElement('script');
-videoScript.src = 'video-gallery.js?v=1';
-document.head.appendChild(videoScript);
 const insuranceLogos = document.querySelector('.insurance-logos');
 if (insuranceLogos && !insuranceLogos.dataset.marqueeReady) {
   insuranceLogos.dataset.marqueeReady = 'true';

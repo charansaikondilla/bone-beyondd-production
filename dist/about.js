@@ -11,10 +11,12 @@ const desktopMenu = matchMedia('(min-width: 851px)');
 serviceMenu.addEventListener('pointerenter', event => {if(desktopMenu.matches && event.pointerType==='mouse')serviceMenu.open=true;});
 serviceMenu.addEventListener('pointerleave', event => {if(desktopMenu.matches && event.pointerType==='mouse')serviceMenu.open=false;});
 serviceMenu.querySelector('summary').addEventListener('click', event => {if(desktopMenu.matches && event.detail > 0 && serviceMenu.open)event.preventDefault();});
-const videoStyles = document.createElement('link');
-videoStyles.rel = 'stylesheet';
-videoStyles.href = 'video-gallery.css?v=1';
-document.head.appendChild(videoStyles);
-const videoScript = document.createElement('script');
-videoScript.src = 'video-gallery.js?v=1';
-document.head.appendChild(videoScript);
+if (document.querySelector('.blog-banner')) {
+  const videoStyles = document.createElement('link');
+  videoStyles.rel = 'stylesheet';
+  videoStyles.href = 'video-gallery.css?v=2';
+  document.head.appendChild(videoStyles);
+  const videoScript = document.createElement('script');
+  videoScript.src = 'video-gallery.js?v=2';
+  document.head.appendChild(videoScript);
+}
