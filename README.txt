@@ -1,0 +1,1 @@
+Upload the contents of dist to your web host. Consultation forms open WhatsApp with a prepared message; visitors must send it and the clinic confirms availability. The chat menu opens pre-written messages and does not automatically reply.
