@@ -4,7 +4,7 @@
     'M30 9.5H17.2C14.5 9.5 13.7 4 9 4 4.6 4 3.4 8.5 5.9 11.2c-4.2 1.5-4.1 7.8.1 9.2C3.5 23.2 5 28 9.2 28c4.6 0 5.2-5.5 8-5.5H30l3-3.2-2.8-3.2 2.8-3.3Z',
     'M30 9.5h16.8c2.7 0 3.5-5.5 8.2-5.5 4.4 0 5.6 4.5 3.1 7.2 4.2 1.5 4.1 7.8-.1 9.2 2.5 2.8 1 7.6-3.2 7.6-4.6 0-5.2-5.5-8-5.5H30l3-3.2-2.8-3.2 2.8-3.3Z'
   ];
-  const candidates = [...document.querySelectorAll('a.button[href*="#consultation"]')].filter(el => /book\s+(a\s+)?consultation/i.test(el.textContent));
+  const candidates = [...document.querySelectorAll('a[href*="#consultation"]')].filter(el => /book\s+(a\s+)?consultation/i.test(el.textContent));
   document.querySelectorAll('a.care-secondary[href="#services"]').forEach(el => candidates.push(el));
   candidates.forEach(link => {
     const isService = link.classList.contains('care-secondary');
@@ -52,7 +52,7 @@
       }, 1800);
     };
     link.addEventListener('pointerenter', event => {
-      if (event.pointerType === 'touch' || reduceMotion.matches) return;
+      if (event.pointerType === 'touch') return;
       hovered = true;
       if (!pending) play();
     });
@@ -62,12 +62,11 @@
       if (!pending && !playing) reset();
     });
     link.addEventListener('focus', () => {
-      if (!pending && !reduceMotion.matches && link.matches(':focus-visible')) play();
+      if (!pending && link.matches(':focus-visible')) play();
     });
     link.addEventListener('blur', () => { if (!playing && !pending) reset(); });
     link.addEventListener('click', event => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.hasAttribute('download') || (link.target && link.target !== '_self')) return;
-      if (reduceMotion.matches) return;
       event.preventDefault();
       if (pending) return;
       pending = true;
