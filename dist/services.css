@@ -9,3 +9,15 @@
 .service-page .service-cards article,.service-page .service-highlights span{background:radial-gradient(ellipse at 100% 0%,#c4e6ff,transparent 60%),linear-gradient(145deg,#fff,#eaf5ff);border:1px solid #c1ddf4;box-shadow:0 10px 25px #155d9c1d,0 0 24px #72c4ff20;transition:transform .35s ease,box-shadow .35s ease,border-color .35s ease}
 .service-page .service-cards article:hover,.service-page .service-highlights span:hover{transform:translateY(-5px);border-color:#72b9ee;box-shadow:0 16px 32px #155b9d30,0 0 32px #60baff55}
 @media(prefers-reduced-motion:reduce){.service-page .service-cards article,.service-page .service-highlights span{transition:none}.service-page .service-cards article:hover,.service-page .service-highlights span:hover{transform:none}}
+
+/* The detailed service pages use the same individual images as their cards. */
+.service-page .service-image[class*="service-visual-"] { background-size: cover; background-position: center; }
+.service-page .service-visual-robotic { background-image: url('service-images/robotic.webp'); }
+.service-page .service-visual-hip { background-image: url('service-images/hip.webp'); }
+.service-page .service-visual-shoulder { background-image: url('service-images/shoulder.webp'); }
+.service-page .service-visual-sports { background-image: url('service-images/sports.webp'); }
+.service-page .service-visual-arthroscopy { background-image: url('service-images/arthroscopy.webp'); }
+.service-page .service-visual-fracture { background-image: url('service-images/fracture.webp'); }
+.service-page .service-visual-spine { background-image: url('service-images/spine.webp'); }
+.service-page .service-visual-regenerative { background-image: url('service-images/regenerative.webp'); }
+.service-page .service-visual-nonsurgical { background-image: url('service-images/nonsurgical.webp'); }

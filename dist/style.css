@@ -44,7 +44,7 @@
 dialog{border:1px solid var(--line);border-radius:14px;padding:28px;max-width:min(430px,calc(100% - 36px));color:var(--navy)}
 dialog::backdrop{background:#181a25a0}
 @media(max-width:850px){.hero-layout,.profile-layout,.nav{width:calc(100% - 40px)}.profile-layout{grid-template-columns:1fr}.profile-photo{max-width:285px;width:100%}.profile-hero{padding:70px 0}.hero-photo{background-position:57% center}.hero-shade{background:#15181a9c}.reference-hero{min-height:calc(100svh - 72px)}}
-@media(max-width:500px){.reference-hero h1 br{display:none}.reference-hero .button,.profile-hero .button{padding-inline:13px}.floating-chat{width:48px;height:48px;right:15px;bottom:15px}}
+@media(max-width:500px){.reference-hero .button,.profile-hero .button{padding-inline:13px}.floating-chat{width:48px;height:48px;right:15px;bottom:15px}}
 @media(prefers-reduced-motion:reduce){.hero-photo{transition:none}}
 
 /* Desktop contact strip */
@@ -195,10 +195,10 @@ dialog::backdrop{background:#181a25a0}
   .dropdown div { margin: 6px 0; border: 0; background: #f1f6fd; padding: 6px; border-radius: 9px; }
   .dropdown div a { padding: 10px 12px; }
   section, article { scroll-margin-top: 82px; }
-  .reference-hero { min-height: 0; display: block; padding-top: min(72vw, 390px); background: #071a37; }
-  .photo-office { height: min(85vw, 450px); bottom: auto; background-size: cover; background-position: 74% top; }
-  .hero-shade { height: min(86vw, 460px); bottom: auto; background: linear-gradient(180deg, transparent 45%, #071a37e6 88%, #071a37 100%); }
-  .hero-layout { width: calc(100% - 40px); position: relative; padding: 0 0 38px; }
+  .reference-hero { min-height: 0; display: block; padding-top: 0; background: #071a37; }
+  .photo-office { position: relative; inset: auto; z-index: auto; height: min(85vw, 450px); background-size: cover; background-position: 74% top; }
+  .hero-shade { display: none; }
+  .hero-layout { width: calc(100% - 40px); position: relative; padding: 28px 0 38px; }
   .reference-hero h1 { max-width: 570px; font-size: clamp(2.2rem, 8.5vw, 3.6rem); line-height: 1.05; letter-spacing: -.045em; margin-bottom: 16px; }
   .reference-hero .lead { max-width: 520px; font-size: 1rem; line-height: 1.6; color: #e6eef8; }
   .hero-points { margin-bottom: 24px; font-size: .9rem; display: flex; flex-wrap: wrap; gap: 2px 14px; }
@@ -332,7 +332,7 @@ dialog::backdrop{background:#181a25a0}
 .site-footer .site-footer-bottom{border-top:1px solid #345072;padding:24px 0;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#b9cbe0;font-size:.8rem}
 .site-footer .footer-credit strong{color:#fff;letter-spacing:.01em}
 @media(max-width:1000px){.site-footer .site-footer-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:42px}}
-@media(max-width:560px){.site-footer,.about-page .site-footer{padding-top:50px}.site-footer .site-footer-grid{grid-template-columns:1fr 1fr;gap:32px 20px;padding-bottom:40px}.site-footer .footer-intro,.site-footer .footer-quick{grid-column:1/-1}.site-footer .footer-contacts{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px 8px}.site-footer .site-footer-bottom{flex-direction:column;gap:8px}.site-footer .footer-intro p{margin:16px 0 10px}}
+@media(max-width:560px){.site-footer,.about-page .site-footer{padding-top:50px}.site-footer .site-footer-grid{grid-template-columns:1fr 1fr;gap:32px 20px;padding-bottom:40px}.site-footer .footer-intro,.site-footer .footer-quick{grid-column:1/-1}.site-footer .footer-contacts{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px 8px}.site-footer .footer-contact>span:last-child{min-width:0;overflow-wrap:anywhere}.site-footer .site-footer-bottom{flex-direction:column;gap:8px}.site-footer .footer-intro p{margin:16px 0 10px}}
 /* Bone button: one animation controls both hover and activation. */
 .bone-action{position:relative;isolation:isolate;overflow:hidden;gap:10px}
 .bone-action-label,.bone-action-icon{position:relative;z-index:2}
@@ -501,3 +501,9 @@ dialog::backdrop{background:#181a25a0}
   .ref-services-grid .service-side-card:hover,.ref-services-grid .service-side-card:focus-visible,.ref-condition:hover,.ref-condition:focus-visible{animation-play-state:paused}
 }
 @media(prefers-reduced-motion:reduce){.ref-services-grid .service-side-card,.ref-condition,.ref-steps li,.ref-contact-grid article,.experience-card{animation:none;transition:none}.ref-services-grid .service-side-card:hover,.ref-services-grid .service-side-card:focus-visible,.ref-condition:hover,.ref-condition:focus-visible,.ref-contact-grid article:hover,.ref-steps li:hover{transform:none}}
+
+/* Individual service images, independently reusable for each treatment. */
+.service-side-image { object-fit: cover; object-position: center; }
+
+/* Prevent decorative overflow from widening the homepage on phones. */
+@media(max-width:850px){.home-page{overflow-x:clip}}

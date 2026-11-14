@@ -68,3 +68,22 @@
 .about-page .why-grid{gap:20px}
 @media(max-width:850px){.about-page .why > .wrap{width:min(680px,calc(100% - 56px))}.about-page .why-grid{gap:16px}}
 @media(max-width:560px){.about-page .why > .wrap{width:calc(100% - 40px)}.about-page .why-grid{gap:12px}}
+
+/* Give the About portrait and copy separate space on smaller screens. */
+@media (max-width: 850px) {
+  .about-page .about-banner { display: block; min-height: 0; }
+  .about-page .about-banner-photo {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: min(78vw, 420px);
+    background: url('hero-doctor.webp') 74% top / cover no-repeat;
+  }
+  .about-page .about-banner-inner { padding: 28px 0 42px; }
+  .about-page .about-breadcrumb { margin-bottom: 22px; }
+  .about-page .banner-copy { max-width: 430px; }
+  .about-page .banner-index { display: none; }
+}
+@media (max-width: 360px) {
+  .about-page .approach-grid { grid-template-columns: 1fr; }
+}
