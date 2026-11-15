@@ -1,12 +1,15 @@
 (() => {
-  const list = document.querySelector('.insurance-logos');
-  if (!list || !('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  list.querySelectorAll('li').forEach((tile, index) => tile.style.setProperty('--logo-delay', `${(index % 6) * 55}ms`));
-  const observer = new IntersectionObserver((entries) => {
-    if (entries.some(entry => entry.isIntersecting)) {
-      list.classList.add('motion-enter');
-      observer.disconnect();
-    }
-  }, { threshold: 0.12 });
-  observer.observe(list);
+  'use strict';
+  // Homepage insurance line: a second (hidden) copy of the logos follows the first,
+  // so the CSS animation can loop seamlessly with no jump or gap.
+  const track = document.querySelector('.insurance-marquee-track');
+  if (!track || track.dataset.ready) return;
+  track.dataset.ready = 'true';
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const strip = track.querySelector('.insurance-strip');
+  if (!strip) return;
+  const copy = strip.cloneNode(true);
+  copy.setAttribute('aria-hidden', 'true');
+  copy.querySelectorAll('img').forEach(img => { img.alt = ''; img.loading = 'eager'; });
+  track.appendChild(copy);
 })();

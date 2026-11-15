@@ -1,0 +1,49 @@
+/* Homepage: all insurers in one continuously scrolling line (full screen width) */
+.ref-insurance{overflow:hidden}
+.ref-insurance>.wrap{overflow:visible}
+.insurance-marquee{
+  position:relative;width:100vw;margin:8px 0 0 calc(50% - 50vw);overflow:hidden;padding:8px 0 14px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+}
+.insurance-marquee-track{display:flex;width:max-content;animation:insurance-line 70s linear infinite;-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);will-change:transform}
+.insurance-marquee:hover .insurance-marquee-track,.insurance-marquee:focus-within .insurance-marquee-track{animation-play-state:paused}
+.insurance-strip{display:flex;flex-wrap:nowrap;gap:16px;margin:0;padding:0 16px 0 0;list-style:none}
+.insurance-strip li{flex:0 0 200px;height:80px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid #cfe2f5;border-radius:16px;box-shadow:0 8px 20px #0e5b9f17;overflow:hidden}
+.insurance-strip img{display:block;width:100%;height:100%;object-fit:contain;padding:6px 10px;box-sizing:border-box}
+@keyframes insurance-line{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+.insurance-more{text-align:center;margin-top:18px}
+.insurance-all{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:12px 26px;border-radius:999px;background:#0759cf;color:#fff;font-weight:800;text-decoration:none;box-shadow:0 10px 24px #0759cf33}
+.insurance-all:hover{background:#0648a9}
+@media(max-width:600px){
+  .insurance-strip{gap:12px;padding-right:12px}
+  .insurance-strip li{flex-basis:160px;height:66px;border-radius:13px}
+  .insurance-all{width:100%;justify-content:center;max-width:360px;box-sizing:border-box}
+}
+@media(prefers-reduced-motion:reduce){
+  .insurance-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .insurance-marquee-track{animation:none}
+}
+
+/* All insurance page */
+.insurance-page-main{background:linear-gradient(160deg,#f8fcff,#eaf5ff);padding:clamp(36px,5vw,70px) 0 clamp(56px,7vw,96px);color:#102d52}
+.insurance-page-head{text-align:center;max-width:760px;margin:0 auto 34px}
+.insurance-page-head .ref-label{margin:0 0 10px}
+.insurance-page-head h1{font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.08;letter-spacing:-.04em;margin:0 0 14px}
+.insurance-page-head h1 span{color:#0759cf}
+.insurance-page-head p{color:#4a6587;font-size:1.05rem;line-height:1.7;margin:0}
+.insurance-count{display:inline-block;margin-top:16px;padding:6px 18px;border-radius:999px;background:#0759cf;color:#fff;font-weight:750;font-size:.9rem}
+.insurance-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;list-style:none;margin:0;padding:0}
+.insurance-grid li{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;min-width:0;padding:22px 16px 18px;background:#fff;border:1px solid #d3e5f7;border-radius:20px;box-shadow:0 10px 26px #0e5b9f14;text-align:center}
+.insurance-grid img{display:block;width:100%;max-width:260px;height:auto;aspect-ratio:230/70;object-fit:contain}
+.insurance-grid span{color:#173a63;font-weight:750;font-size:.92rem;line-height:1.35}
+.insurance-page-note{max-width:760px;margin:32px auto 0;text-align:center;color:#4a6587;line-height:1.7}
+.insurance-page-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px}
+.insurance-page-actions a{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 24px;border-radius:999px;font-weight:800;text-decoration:none}
+.insurance-page-actions .call{background:#0759cf;color:#fff}
+.insurance-page-actions .call:hover{background:#0648a9}
+.insurance-page-actions .wa{background:#0f8a3e;color:#fff}
+.insurance-page-actions .wa:hover{background:#0c6c32}
+@media(max-width:1000px){.insurance-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){.insurance-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.insurance-grid li{padding:16px 10px 14px;border-radius:16px;gap:9px}.insurance-grid span{font-size:.82rem}}
+@media(max-width:480px){.insurance-grid{grid-template-columns:1fr;gap:12px}.insurance-grid li{padding:18px 16px 14px}.insurance-grid img{max-width:280px}.insurance-grid span{font-size:.92rem}}
