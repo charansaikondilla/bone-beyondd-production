@@ -36,7 +36,7 @@ if (introReducedMotion.matches || !document.documentElement.classList.contains("
 
 const menu = document.querySelector('.menu');
 const navigation = document.querySelector('#navigation');
-const mobile = matchMedia('(max-width: 1200px)');
+const mobile = matchMedia('(max-width: 850px)');
 
 function closeMenu() {
   menu.setAttribute('aria-expanded', 'false');
