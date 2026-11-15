@@ -1,0 +1,79 @@
+/* Happy patients: text left, video right */
+.happy-section{padding:clamp(48px,6vw,80px) 0;background:#f4f8fd;color:#102e52}
+.happy-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,64px);align-items:center}
+.happy-copy .ref-label{justify-content:flex-start;margin:0}
+.happy-copy .ref-label:before{display:none}
+.happy-copy h2{font-size:clamp(2.1rem,4.2vw,3.65rem);line-height:1.08;letter-spacing:-.05em;margin:10px 0 14px}
+.happy-copy h2 span{color:#0870ce}
+.happy-copy>p{color:#3f5a7a;line-height:1.75;margin:0 0 22px;max-width:520px}
+.happy-copy ul{list-style:none;padding:0;margin:0 0 26px;display:grid;gap:10px}
+.happy-copy li{display:flex;gap:10px;align-items:center;color:#24476f;font-weight:650}
+.happy-copy li span{color:#0870ce}
+.happy-link{display:inline-flex;gap:14px;color:#0758b8;font-weight:800;text-decoration:none;border-bottom:1px solid #a8c8e7;padding-bottom:8px}
+.happy-link:hover{color:#003d87;border-color:currentColor}
+.happy-videos{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;scrollbar-color:#a9c6e5 transparent}
+.happy-video:first-child{margin-left:auto}
+.happy-video{flex:0 0 min(320px,78vw);margin:0;scroll-snap-align:start;border-radius:20px;overflow:hidden;background:#081d43;box-shadow:0 18px 40px #14447522}
+.happy-video video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#081d43}
+@media(max-width:850px){
+  .happy-layout{grid-template-columns:1fr}
+  .happy-video:first-child{margin-left:0}
+}
+@media(max-width:600px){.happy-section{padding:44px 0}.happy-video{flex-basis:min(290px,82vw)}}
+
+/* Google reviews: compact, brand-blue band */
+.google-reviews-section.stories-section{padding:clamp(28px,3.4vw,44px) 0;background:linear-gradient(120deg,#0759cf 0%,#0a4bb0 55%,#083b8f 100%);color:#fff}
+.reviews-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px 24px;flex-wrap:wrap;margin-bottom:18px}
+.reviews-title h2{color:#fff;font-size:clamp(1.55rem,2.6vw,2.2rem);line-height:1.1;letter-spacing:-.03em;margin:10px 0 0}
+.google-reviews-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;background:#fff;border-radius:999px;color:#1f3550;font-size:.84rem;font-weight:750;text-decoration:none;box-shadow:0 6px 18px #02163d33}
+.google-reviews-badge strong{font-size:.95rem;color:#1f3550}
+.google-reviews-badge .badge-stars{color:#fbbc05;letter-spacing:1px;font-size:.95rem}
+.google-reviews-badge:hover{background:#eef5ff}
+.google-g{width:22px;height:22px;flex:0 0 auto}
+.reviews-actions{display:flex;align-items:center;gap:8px}
+.reviews-actions button{width:40px;height:40px;border:1px solid #ffffff70;border-radius:50%;background:transparent;color:#fff;font-size:1.1rem;cursor:pointer}
+.reviews-actions button:hover,.reviews-actions button:focus-visible{background:#fff;color:#0759cf}
+.reviews-all{margin-left:8px;color:#fff;font-weight:800;font-size:.9rem;text-decoration:none;border-bottom:1px solid #ffffff90;padding-bottom:4px;white-space:nowrap}
+.reviews-all:hover{border-color:#fff}
+/* Cards run edge to edge across the full screen width (no cut-off in the middle of the page),
+   starting in line with the heading */
+.google-reviews-section{overflow:hidden}
+.google-reviews-section .stories-track{width:100vw;margin-left:calc(50% - 50vw);box-sizing:border-box;padding:4px max(32px,calc((100vw - 1180px) / 2)) 12px;gap:16px;align-items:stretch;scrollbar-width:none}
+.google-reviews-section .stories-track::-webkit-scrollbar{display:none}
+.google-reviews-section .story-card{padding:20px;border:0;box-shadow:0 10px 26px #02163d30;color:#102d52}
+.google-reviews-section .story-person strong{color:#102d52}
+.google-reviews-section .story-person span:not(.story-avatar){color:#5b708a}
+.google-reviews-section .story-card blockquote{margin-top:12px}
+.google-reviews-section .story-card blockquote p,.google-reviews-section .story-more p{font-size:.93rem;line-height:1.6;color:#22405f}
+.google-reviews-section .story-card-top .story-stars{color:#fbbc05}
+.story-person .google-g{width:18px;height:18px;margin-left:auto;align-self:center}
+.stories-home .story-person{align-items:center}
+/* Opening "Read full review" replaces the short preview instead of repeating it */
+.story-card.is-expanded blockquote{display:none}
+.story-card:has(.story-more[open]) blockquote{display:none}
+.story-card.is-expanded .story-more p,.story-card:has(.story-more[open]) .story-more p{margin-top:10px;padding-top:0;border-top:0}
+@media(max-width:600px){
+  .google-reviews-section.stories-section{padding:28px 0}
+  .reviews-head{align-items:center;margin-bottom:14px}
+  .reviews-actions button{width:36px;height:36px}
+}
+@media(max-width:500px){.google-reviews-section .stories-track{padding-left:18px;padding-right:18px}}
+
+/* Doctor section right after the reviews: less vertical space, clearer text */
+.home-page .profile-hero{padding:clamp(36px,4.5vw,60px) 0}
+.home-page .profile-hero .care-copy .eyebrow{margin-bottom:12px}
+.home-page .profile-hero .care-copy h2{font-size:clamp(2.1rem,3.6vw,3.4rem);margin-bottom:14px}
+.home-page .profile-hero .care-intro{color:#eef5ff;font-size:1.06rem;line-height:1.65;margin-bottom:20px}
+.home-page .care-doctor{padding-top:16px}
+.home-page .care-credentials{color:#cfe6ff;font-size:.88rem}
+.home-page .care-role{color:#fff;font-size:.95rem}
+.home-page .profile-hero .care-specialties{margin:12px 0 18px;color:#fff;font-size:.95rem}
+.home-page .care-secondary{color:#fff}
+@media(max-width:850px){
+  .home-page .profile-hero{padding:36px 0}
+  .home-page .care-layout{gap:22px}
+  .home-page .profile-hero .care-copy h2{font-size:clamp(1.9rem,7.5vw,2.6rem)}
+  .home-page .profile-hero .care-intro{font-size:1rem}
+}
+
+.home-page #consultation{scroll-margin-top:90px}

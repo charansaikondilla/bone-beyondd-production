@@ -1,0 +1,57 @@
+/* Site-wide navbar: Home, About (Dr Anuj Patwari), Google Reviews, Happy Patients,
+   Surgical Expertise, Blogs, Gallery, Contact Us */
+.nav nav>a.nav-about small{font-weight:650;color:#5a7290;letter-spacing:.01em;white-space:nowrap}
+.nav nav>a.nav-about:hover small{color:#0759cf}
+.nav nav>a.nav-google{display:inline-flex;align-items:center;gap:6px}
+.nav nav>a.nav-google .google-g{width:16px;height:16px;flex:0 0 16px}
+#patient-reviews,#happy-patients{scroll-margin-top:110px}
+
+/* Laptop / desktop: everything on one line */
+@media(min-width:1100px){
+  .nav{gap:12px}
+  .nav .logo{flex:0 1 190px;min-width:150px}
+  .nav nav{gap:clamp(11px,1.15vw,20px)}
+  .nav nav>a,.nav nav>.dropdown>summary{font-size:clamp(.8rem,.66rem + .2vw,.9rem);white-space:nowrap}
+  .nav .nav-cta{white-space:nowrap}
+  /* "About" stays on the same line as the other links; the doctor's name sits small underneath */
+  .nav nav>a.nav-about{position:relative;display:inline-block}
+  .nav nav>a.nav-about small{position:absolute;left:50%;top:calc(50% + .7rem);transform:translateX(-50%);font-size:.6rem;line-height:1;pointer-events:none}
+  .nav nav>a.nav-about::after{bottom:4px}
+}
+@media(min-width:1100px) and (max-width:1365px){
+  .nav .nav-cta{font-size:.8rem;padding:10px 13px}
+}
+
+/* Small laptops / tablets landscape: compact Menu button, same as mobile */
+@media(min-width:851px) and (max-width:1099px){
+  .nav{min-height:70px;flex-wrap:wrap;gap:10px;padding:8px 0}
+  .nav .logo{flex:1 1 auto;max-width:180px}
+  .nav .mobile-call{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:0 13px;border-radius:9px;background:#e9f2ff;color:#0648a9;font-size:.82rem;font-weight:750;text-decoration:none}
+  .nav .mobile-call{margin-left:auto}
+  .nav .mobile-call svg{width:18px;height:18px}
+  .nav .menu:not([hidden]){display:inline-flex;min-height:42px;padding:0 12px;gap:7px;font-size:.82rem;border-radius:9px}
+  .nav .menu-icon{width:14px;height:10px;border-top:2px solid currentColor;border-bottom:2px solid currentColor;position:relative}
+  .nav .menu-icon:after{content:"";position:absolute;left:0;right:0;top:3px;border-top:2px solid currentColor}
+  .nav .nav-cta{display:none}
+  .nav nav{width:100%;order:3;display:flex;align-items:stretch;flex-direction:column;gap:0;margin-left:0;padding:8px 0 12px;max-height:calc(100dvh - 125px);overflow:auto}
+  .nav .menu:not([hidden])+nav:not(.open){display:none}
+  .nav nav>a,.nav nav>.dropdown>summary{display:block;padding:13px 4px;border-bottom:1px solid #e4ebf4}
+  .nav nav>a:after,.nav nav>.dropdown>summary:before{display:none}
+  .nav nav>a.nav-about,.nav nav>a.nav-google{display:flex;align-items:center;gap:8px}
+  .nav nav>a.nav-about small{font-size:.78em}
+  .nav .dropdown div{position:static;max-height:none;box-shadow:none;border:0;background:#f1f6fd;padding:6px;border-radius:9px;margin:6px 0;opacity:1;visibility:visible;transform:none}
+  .nav .dropdown:not([open]) div{display:none}
+  .nav .dropdown div a{color:#123e73;padding:10px 12px}
+  .nav .dropdown div a:hover{background:#dfeeff;color:#0759cf}
+}
+@media(max-width:850px){
+  .nav nav>a.nav-about,.nav nav>a.nav-google{display:flex;align-items:center;gap:8px}
+  .nav nav>a.nav-about small{font-size:.78em}
+}
+
+/* Gallery page: images only */
+.gallery-page-main{background:#f4f8fd;padding:clamp(28px,5vw,64px) 0 clamp(56px,7vw,96px)}
+.gallery-page-main h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.photo-gallery{columns:3 280px;column-gap:16px}
+.photo-gallery img{display:block;width:100%;height:auto;margin:0 0 16px;border-radius:16px;break-inside:avoid;background:#e3edf8;box-shadow:0 10px 28px #1444750f}
+@media(max-width:600px){.photo-gallery{columns:2 150px;column-gap:10px}.photo-gallery img{margin-bottom:10px;border-radius:12px}}
