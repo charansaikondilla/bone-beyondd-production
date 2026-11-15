@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://boneandbeyondd.in/sitemap.xml

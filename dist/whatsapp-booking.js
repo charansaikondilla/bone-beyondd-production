@@ -14,12 +14,29 @@
         return;
       }
       const lines = ['Hello Bone and Beyondd, I would like to request a consultation.', '', `Name: ${clean('name')}`, `Phone: ${clean('phone')}`];
+      if (clean('location')) lines.push(`Location: ${clean('location')}`);
       if (clean('date')) lines.push(`Preferred date: ${clean('date')}`);
+      if (clean('time')) lines.push(`Preferred time: ${clean('time')}`);
       if (clean('email')) lines.push(`Email: ${clean('email')}`);
       if (clean('message')) lines.push(`Message: ${clean('message')}`);
       lines.push('', 'Please let me know about availability.');
       openWhatsApp(lines.join('\n'));
     });
+  });
+  document.querySelectorAll('#appointment, .contact-form').forEach(form => {
+    const location = form.querySelector('[name=location]'), date = form.querySelector('[name=date]'), time = form.querySelector('[name=time]'), hint = form.querySelector('.booking-hint');
+    if (!location || !date || !time) return;
+    const now = new Date(); date.min = new Date(now.getTime() - now.getTimezoneOffset()*60000).toISOString().slice(0,10);
+    function update() {
+      time.replaceChildren(new Option('Choose a preferred time', '')); time.disabled = true; date.setCustomValidity('');
+      if (!location.value || !date.value) { hint.textContent = 'Select a location and date to see consultation hours.'; return; }
+      const hospital = location.value.startsWith('Srikara');
+      if (hospital && new Date(date.value + 'T12:00:00').getDay() === 0) { date.setCustomValidity('Srikara consultations are Monday to Saturday. Please choose another date.'); hint.textContent = 'Srikara consultations are Monday–Saturday. Please choose another date.'; return; }
+      hint.textContent = hospital ? 'Srikara: Monday–Saturday, 9:00 AM–6:00 PM. The clinic will confirm availability.' : 'Bone and Beyondd: every day, 6:30–9:30 PM. The clinic will confirm availability.';
+      const start = hospital ? 9*60 : 18*60+30, end = hospital ? 18*60 : 21*60+30;
+      for (let n=start;n<=end;n+=30) { const h=Math.floor(n/60), m=String(n%60).padStart(2,'0'), label=(h%12||12)+':'+m+' '+(h<12?'AM':'PM'); time.add(new Option(label,label)); } time.disabled=false;
+    }
+    location.addEventListener('change',update); date.addEventListener('change',update);
   });
   const style = document.createElement('style');
   style.textContent = `.floating-chat{display:none!important}.bb-chat-launch{position:fixed;right:20px;bottom:20px;z-index:999;background:#087e48;color:#fff;border:0;border-radius:999px;padding:13px 17px;display:flex;gap:9px;align-items:center;box-shadow:0 10px 30px #001c4160;font:700 14px system-ui;cursor:pointer}.bb-chat-launch svg{width:24px;height:24px}.bb-chat-panel{position:fixed;right:20px;bottom:82px;z-index:999;width:min(340px,calc(100vw - 32px));background:#fff;border:1px solid #dce8f4;border-radius:18px;box-shadow:0 20px 55px #071b3b35;overflow:hidden;font-family:system-ui,sans-serif;color:#0a2245}.bb-chat-panel[hidden]{display:none}.bb-chat-head{background:#092653;color:white;padding:18px 20px;display:flex;justify-content:space-between;align-items:start}.bb-chat-head strong{display:block;font-size:16px}.bb-chat-head small{color:#bcd6f3}.bb-chat-close{background:none;border:0;color:white;font-size:25px;cursor:pointer;line-height:1}.bb-chat-body{padding:18px}.bb-chat-body p{font-size:14px;line-height:1.5;margin:0 0 12px}.bb-chat-options{display:grid;gap:8px}.bb-chat-options button{background:#f1f7ff;border:1px solid #cfe3f8;border-radius:10px;padding:10px 12px;color:#123e77;text-align:left;font-weight:600;cursor:pointer}.bb-chat-options button:hover,.bb-chat-options button:focus-visible{background:#dfeeff}.bb-chat-note{font-size:12px!important;color:#50637b;margin:12px 0 0!important}@media(max-width:600px){.bb-chat-launch{right:14px;bottom:16px}.bb-chat-panel{right:16px;bottom:76px}}`;
