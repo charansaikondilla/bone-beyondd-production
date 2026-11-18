@@ -1,0 +1,7 @@
+.lightbox{border:0;padding:0;background:transparent;max-width:min(1100px,94vw);max-height:94vh;overflow:visible}
+.lightbox::backdrop{background:#020a17e6}
+.lightbox img{display:block;max-width:min(1100px,94vw);max-height:84vh;width:auto;height:auto;margin:0 auto;border-radius:12px;background:#020a17}
+.lightbox-caption{margin:10px auto 0;max-width:760px;text-align:center;color:#dbeafe;font-size:.9rem;line-height:1.5}
+.lightbox-close{position:absolute;top:-14px;right:-6px;width:42px;height:42px;border-radius:50%;border:0;background:#fff;color:#0b2a55;font-size:1.6rem;line-height:1;cursor:pointer;box-shadow:0 6px 18px #0006}
+.lightbox-close:focus-visible{outline:3px solid #60a5fa;outline-offset:2px}
+@media(max-width:600px){.lightbox-close{top:-50px;right:0}}
