@@ -1,0 +1,18 @@
+.spine-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;margin-top:30px}
+.spine-card{margin:0;display:flex;flex-direction:column;border-radius:18px;overflow:hidden;background:#fff;border:1px solid #c1ddf4;box-shadow:0 10px 25px #155d9c1d}
+.spine-card a{display:block;overflow:hidden;cursor:zoom-in;background:#020a17}
+.spine-card a:focus-visible{outline:3px solid #67aaff;outline-offset:-3px}
+.spine-card img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:50% 55%;transition:transform .4s ease}
+.spine-card a:hover img{transform:scale(1.03)}
+.spine-card figcaption{padding:15px 18px 18px;font-size:.88rem;line-height:1.55;color:#4d627e;flex:1}
+.spine-card figcaption strong{display:block;color:#0a2352;font-size:.98rem;margin-bottom:3px}
+.spine-scan{background:#06162e;border-color:#06162e}.spine-scan figcaption{color:#c9dcf1}.spine-scan figcaption strong{color:#fff}
+.spine-note{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;border-radius:18px;padding:clamp(24px,3vw,38px);background:linear-gradient(145deg,#0759cf,#083b8f);color:#fff}
+.service-page .spine-note h3{color:#fff;font-size:clamp(1.35rem,2vw,1.75rem);line-height:1.2;margin:0 0 12px}
+.service-page .spine-note p{color:#dcebff;line-height:1.65;margin:0 0 22px}
+.spine-note .spine-note-link{background:#fff;color:#0757bd;border-radius:10px;padding:13px 18px;font-weight:750;font-size:.9rem;text-decoration:none}
+.spine-note .spine-note-link:hover{background:#e3f0ff}.spine-note .spine-note-link:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.spine-hint{font-size:.8rem;line-height:1.6;color:#5d718b;margin:16px 0 0}
+@media(max-width:900px){.spine-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+@media(max-width:600px){.spine-grid{gap:12px}.spine-card:first-child,.spine-note{grid-column:1/-1}.spine-card:first-child img{aspect-ratio:1/1}.spine-card figcaption{padding:12px 13px 14px;font-size:.8rem}.spine-card figcaption strong{font-size:.88rem}}
+@media(prefers-reduced-motion:reduce){.spine-card img{transition:none}.spine-card a:hover img{transform:none}}

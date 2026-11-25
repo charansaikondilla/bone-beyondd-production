@@ -11,15 +11,26 @@
 .happy-copy li span{color:#0870ce}
 .happy-link{display:inline-flex;gap:14px;color:#0758b8;font-weight:800;text-decoration:none;border-bottom:1px solid #a8c8e7;padding-bottom:8px}
 .happy-link:hover{color:#003d87;border-color:currentColor}
-.happy-videos{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 2px 14px;scrollbar-color:#a9c6e5 transparent}
-.happy-video:first-child{margin-left:auto}
-.happy-video{flex:0 0 min(320px,78vw);margin:0;scroll-snap-align:start;border-radius:20px;overflow:hidden;background:#081d43;box-shadow:0 18px 40px #14447522}
-.happy-video video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#081d43}
-@media(max-width:850px){
-  .happy-layout{grid-template-columns:1fr}
-  .happy-video:first-child{margin-left:0}
-}
-@media(max-width:600px){.happy-section{padding:44px 0}.happy-video{flex-basis:min(290px,82vw)}}
+.happy-carousel{--happy-card:300px;min-width:0}
+.happy-videos{display:flex;gap:18px;position:relative;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;padding:10px max(0px,calc(50% - var(--happy-card) / 2)) 26px;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent);mask-image:linear-gradient(90deg,transparent,#000 22px,#000 calc(100% - 22px),transparent)}
+.happy-videos::-webkit-scrollbar{display:none}
+.happy-carousel:has(.happy-videos:focus-visible){outline:3px solid #67aaff;outline-offset:3px;border-radius:20px}.happy-videos:focus-visible{outline:none}
+.happy-video{position:relative;flex:0 0 var(--happy-card);margin:0;scroll-snap-align:center;border-radius:20px;overflow:hidden;background:#081d43;box-shadow:0 14px 26px #14447526;transition:transform .35s ease,opacity .35s ease}
+.happy-video video{display:block;width:100%;height:auto;aspect-ratio:9/16;object-fit:cover;background:#081d43}
+.is-ready .happy-video.is-side{transform:scale(.92);opacity:.6;cursor:pointer}
+.is-ready .happy-video.is-side video{pointer-events:none}
+.happy-controls{display:none;align-items:center;justify-content:center;gap:18px}
+.is-ready .happy-controls{display:flex}
+.happy-controls>button{width:44px;height:44px;border:1px solid #a8c8e7;border-radius:50%;background:#fff;color:#0758b8;font-size:1.15rem;line-height:1;cursor:pointer;transition:background .2s,color .2s}
+.happy-controls>button:hover{background:#0758b8;color:#fff}
+.happy-controls button:focus-visible{outline:3px solid #67aaff;outline-offset:2px}
+.happy-dots{display:flex;align-items:center}
+.happy-dots button{width:28px;height:28px;padding:0;border:0;background:none;display:grid;place-items:center;cursor:pointer}
+.happy-dots button:before{content:"";width:10px;height:10px;border-radius:999px;background:#a9c6e5;transition:width .25s,background .25s}
+.happy-dots button[aria-current]:before{width:24px;background:#0870ce}
+@media(max-width:850px){.happy-layout{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:600px){.happy-section{padding:44px 0}.happy-carousel{--happy-card:min(270px,74vw)}.happy-videos{gap:12px;padding-bottom:22px}}
+@media(prefers-reduced-motion:reduce){.happy-video,.happy-controls>button,.happy-dots button:before{transition:none}}
 
 /* Google reviews: compact, brand-blue band */
 .google-reviews-section.stories-section{padding:clamp(28px,3.4vw,44px) 0;background:linear-gradient(120deg,#0759cf 0%,#0a4bb0 55%,#083b8f 100%);color:#fff}
