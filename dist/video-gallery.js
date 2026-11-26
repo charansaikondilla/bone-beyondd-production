@@ -9,13 +9,25 @@
     { file: 'recovery-plan.mp4', title: 'A recovery plan made for you', tag: 'Recovery' }
   ];
 
+  // Each clip downloads and plays only while its card is on screen.
+  const still = window.matchMedia('(prefers-reduced-motion: reduce)').matches || (navigator.connection && navigator.connection.saveData);
+  const watcher = !still && 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      const player = entry.target.querySelector('video');
+      if (entry.isIntersecting) {
+        if (!player.src) player.src = player.dataset.src;
+        player.muted = true;
+        player.play().catch(() => {});
+      } else player.pause();
+    });
+  }, { threshold: 0.4 }) : null;
+
   function card(video) {
     const item = document.createElement('article');
     item.className = 'video-card';
     item.dataset.category = video.tag;
-    item.innerHTML = '<video autoplay muted loop playsinline preload="auto" src="videos/' + video.file + '" aria-label="' + video.title + '"></video><div class="video-card-overlay"><span>' + video.tag + '</span><strong>' + video.title + '</strong></div>';
-    const player = item.querySelector('video');
-    player.addEventListener('canplay', () => { player.play().catch(() => {}); }, { once: true });
+    item.innerHTML = '<video muted loop playsinline preload="none" poster="videos/preview/' + video.file.replace('.mp4', '.webp') + '" data-src="videos/preview/' + video.file + '" aria-label="' + video.title + '"></video><div class="video-card-overlay"><span>' + video.tag + '</span><strong>' + video.title + '</strong></div>';
+    if (watcher) watcher.observe(item);
     return item;
   }
 
@@ -28,6 +40,7 @@
     const filters = section.querySelectorAll('.video-filter');
 
     function build(filter) {
+      if (watcher) watcher.disconnect();
       track.replaceChildren();
       const visible = filter === 'All' ? videos : videos.filter((video) => video.tag === filter);
       visible.concat(visible).forEach((video) => track.appendChild(card(video)));
@@ -39,6 +52,9 @@
       build(button.dataset.filter);
     }));
     build('All');
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver((entries) => { track.style.animationPlayState = entries[entries.length - 1].isIntersecting ? '' : 'paused'; }).observe(section);
+    }
     return section;
   }
 

@@ -20,9 +20,13 @@
   const goTo = (index, smooth = true) => track.scrollTo({ left: leftFor(index), behavior: smooth && !reduceMotion.matches ? 'smooth' : 'instant' });
   const playing = () => videos.some(video => !video.paused && !video.ended);
 
+  // Fetch the start of the centred video early so it plays without a wait.
+  const warm = () => { if (visible && current >= 0 && videos[current].preload === 'none') videos[current].preload = 'metadata'; };
+
   const setCurrent = index => {
     if (index === current) return;
     current = index;
+    warm();
     cards.forEach((card, i) => card.classList.toggle('is-side', i !== index));
     dots.forEach((dot, i) => { if (i === index) dot.setAttribute('aria-current', 'true'); else dot.removeAttribute('aria-current'); });
     videos.forEach((video, i) => {
@@ -82,6 +86,7 @@
   if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => {
       visible = entries[entries.length - 1].isIntersecting;
+      warm();
       if (!visible) videos.forEach(video => { if (!document.fullscreenElement && document.pictureInPictureElement !== video) video.pause(); });
     }, { threshold: 0.2 }).observe(root);
   }

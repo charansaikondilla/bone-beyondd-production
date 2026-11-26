@@ -48,7 +48,7 @@
 @media(max-width:850px){.about-page .about-banner-photo{background-position:70% top}.about-page .why-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.about-page .section{padding:65px 0}.about-page .about-banner{min-height:510px}.about-page .about-banner-photo{background-position:68% top}.about-page .center-heading{margin-bottom:32px}.about-page .approach-grid article{padding:22px 18px;min-height:0}.about-page .approach-grid p{font-size:.88rem}.about-page .expertise-grid article{padding:20px}.about-page .expertise-grid img{height:190px}.about-page .tech-image img{height:300px}.about-page .why-grid{grid-template-columns:1fr;gap:10px}.about-page .why-grid div{padding:14px 16px}.about-page .consult-actions{flex-wrap:wrap}.about-footer .footer-grid{grid-template-columns:1fr 1fr}.about-more{margin-top:65px}}
 /* Coordinated, illustrative clinical photography. */
-.about-page .clinical-art{background-image:url('clinical-imagery.png');background-repeat:no-repeat;background-size:200% auto}
+.about-page .clinical-art{background-image:url('clinical-imagery.webp');background-repeat:no-repeat;background-size:200% auto}
 .about-page .expertise-grid .clinical-art{height:200px;width:100%;border-radius:11px;margin-bottom:26px}
 .about-page .clinical-sports{background-position:left top}
 .about-page .clinical-surgery{background-position:right top}

@@ -24,6 +24,7 @@
   let pos = track.scrollLeft;
   let last = 0;
   let waitUntil = 0;
+  let raf = 0;
   const SPEED = 0.035; // pixels per millisecond (~35px per second)
 
   const pause = () => { paused = true; clearTimeout(resumeTimer); };
@@ -50,10 +51,20 @@
   track.addEventListener('focusin', pause);
   track.addEventListener('focusout', () => resumeLater());
   if ('IntersectionObserver' in window) {
-    new IntersectionObserver(entries => { visible = entries[0].isIntersecting; }, {threshold: 0.25}).observe(track);
+    new IntersectionObserver(entries => { visible = entries[entries.length - 1].isIntersecting; start(); }, {threshold: 0.25}).observe(track);
   }
 
+  function start() {
+    if (raf || !visible || document.hidden || reduceMotion.matches) return;
+    last = 0;
+    pos = track.scrollLeft;
+    raf = requestAnimationFrame(frame);
+  }
+  document.addEventListener('visibilitychange', start);
+  reduceMotion.addEventListener?.('change', start);
+
   function frame(now) {
+    if (!visible || document.hidden || reduceMotion.matches) { raf = 0; return; }
     const dt = last ? Math.min(now - last, 50) : 0;
     last = now;
     const busy = paused || !visible || reduceMotion.matches || document.hidden || track.querySelector('.story-more[open]');
@@ -76,7 +87,7 @@
         }
       }
     }
-    requestAnimationFrame(frame);
+    raf = requestAnimationFrame(frame);
   }
-  requestAnimationFrame(frame);
+  start();
 })();

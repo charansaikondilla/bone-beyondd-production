@@ -17,6 +17,6 @@ if (document.querySelector('.blog-banner')) {
   videoStyles.href = 'video-gallery.css?v=2';
   document.head.appendChild(videoStyles);
   const videoScript = document.createElement('script');
-  videoScript.src = 'video-gallery.js?v=2';
+  videoScript.src = 'video-gallery.js?v=3';
   document.head.appendChild(videoScript);
 }
