@@ -1,0 +1,87 @@
+/* Slow, smooth motion across the site (paired with slow-motion.js).
+   Everything here is visual only: content is never blocked, and all motion
+   is switched off for visitors who ask their device for reduced motion. */
+
+/* 1. Whole page fades in very slowly on load (CSS only, no JS needed) */
+@keyframes sm-page-in{from{opacity:0}}
+body{animation:sm-page-in 1.8s cubic-bezier(.33,0,.2,1) backwards}
+
+/* Book Consultation buttons arrive slowly, after the page around them */
+@keyframes sm-book{
+  0%{opacity:0;transform:translateY(22px) scale(.94)}
+  60%{opacity:1}
+  100%{opacity:1;transform:none}}
+html.sm-ready .sm-book-wait{opacity:0}
+.sm-book-in{animation:sm-book 1.8s cubic-bezier(.16,1,.3,1) .7s backwards}
+/* ...and fades out slowly when moving to another page */
+html.sm-leaving body{opacity:0;transition:opacity .5s ease-in}
+
+/* 2. Sections rise and fade in slowly as you scroll */
+@keyframes sm-rise{from{opacity:0;transform:translateY(46px)}}
+@keyframes sm-fade{from{opacity:0}}
+html.sm-ready .sm-wait{opacity:0}
+.sm-in{animation:sm-rise 1.1s cubic-bezier(.16,1,.3,1) backwards}
+.sm-in-fade{animation:sm-fade 1.1s ease-out backwards}
+
+/* 3. Images fade in slowly from a soft blur */
+@keyframes sm-img{from{opacity:0;filter:blur(6px)}}
+html.sm-ready img.sm-img-wait{opacity:0}
+img.sm-img-in{animation:sm-img 1.3s ease-out backwards}
+
+/* Gallery zoom on hover is slower and softer */
+.photo-gallery img{transition:transform .9s cubic-bezier(.16,1,.3,1)}
+
+/* 4. Buttons: slow hover colours and a slow, soft press */
+.button,.nav-cta,.drawer-book,.drawer-quick a,.bone-action,.care-secondary,.menu,.drawer-close,
+.contact-strip a,.footer-contact,.consult-panel button,form button,.exp-band-link{
+  transition-duration:.55s!important;transition-timing-function:cubic-bezier(.16,1,.3,1)!important}
+@keyframes sm-press{
+  0%{scale:1;box-shadow:0 0 0 0 #0759cf55}
+  25%{scale:.95}
+  100%{scale:1;box-shadow:0 0 0 16px #0759cf00}}
+.sm-press{animation:sm-press .9s cubic-bezier(.16,1,.3,1)}
+
+/* 5. Mobile/tablet menu: slower slide, links appear one after another */
+@keyframes sm-item{from{opacity:0;transform:translateX(26px)}}
+@keyframes sm-drop{from{opacity:0;transform:translateY(-8px)}}
+@media(max-width:1099px){
+  html.drawer-ready .nav .menu:not([hidden])+#navigation{transition:transform .75s cubic-bezier(.16,1,.3,1),visibility 0s linear .75s!important}
+  html.drawer-ready .nav .menu:not([hidden])+#navigation.open{transition:transform .75s cubic-bezier(.16,1,.3,1)!important}
+  .nav-backdrop{transition:opacity .6s ease,visibility 0s linear .6s!important}
+  html.nav-open .nav-backdrop{transition:opacity .6s ease!important}
+  #navigation.open>*{animation:sm-item .7s cubic-bezier(.16,1,.3,1) backwards}
+  #navigation.open>:nth-child(1){animation-delay:.12s}
+  #navigation.open>:nth-child(2){animation-delay:.18s}
+  #navigation.open>:nth-child(3){animation-delay:.24s}
+  #navigation.open>:nth-child(4){animation-delay:.30s}
+  #navigation.open>:nth-child(5){animation-delay:.36s}
+  #navigation.open>:nth-child(6){animation-delay:.42s}
+  #navigation.open>:nth-child(7){animation-delay:.48s}
+  #navigation.open>:nth-child(8){animation-delay:.54s}
+  #navigation.open>:nth-child(9){animation-delay:.60s}
+  #navigation.open>:nth-child(10){animation-delay:.66s}
+  #navigation.open>:nth-child(n+11){animation-delay:.72s}
+  #navigation .dropdown[open]>div>*{animation:sm-drop .55s cubic-bezier(.16,1,.3,1) backwards}
+  #navigation .dropdown[open]>div>:nth-child(2){animation-delay:.05s}
+  #navigation .dropdown[open]>div>:nth-child(3){animation-delay:.10s}
+  #navigation .dropdown[open]>div>:nth-child(4){animation-delay:.15s}
+  #navigation .dropdown[open]>div>:nth-child(5){animation-delay:.20s}
+  #navigation .dropdown[open]>div>:nth-child(6){animation-delay:.25s}
+  #navigation .dropdown[open]>div>:nth-child(7){animation-delay:.30s}
+  #navigation .dropdown[open]>div>:nth-child(8){animation-delay:.35s}
+  #navigation .dropdown[open]>div>:nth-child(n+9){animation-delay:.40s}
+}
+/* Desktop dropdown menus open with a slow fade */
+@media(min-width:1100px){
+  .nav .dropdown[open]>div{animation:sm-drop .5s cubic-bezier(.16,1,.3,1) backwards}
+}
+
+/* Accessibility and printing: no motion, everything visible */
+@media(prefers-reduced-motion:reduce){
+  body,.sm-in,.sm-in-fade,img.sm-img-in,.sm-book-in,.sm-press,#navigation.open>*,#navigation .dropdown[open]>div>*,.nav .dropdown[open]>div{animation:none!important}
+  html.sm-ready .sm-wait,html.sm-ready img.sm-img-wait,html.sm-ready .sm-book-wait{opacity:1}
+  html.sm-leaving body{opacity:1}
+}
+@media print{
+  html.sm-ready .sm-wait,html.sm-ready img.sm-img-wait,html.sm-ready .sm-book-wait,html.sm-leaving body{opacity:1!important}
+}
